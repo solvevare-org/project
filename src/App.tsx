@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   Heart,
   Shield,
@@ -11,25 +11,23 @@ import {
   MapPin,
   Star,
   Clock,
-  Users,
-  Stethoscope,
   PawPrint,
   Menu,
   X,
   ChevronRight,
   CheckCircle,
   MessageCircle,
+  Search,
+  TrendingUp,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Card } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
 } from "../components/ui/navigation-menu";
 import {
   Sheet,
@@ -88,7 +86,6 @@ const VetNavigation = () => {
     { title: "Services", href: "#services" },
     { title: "Testimonials", href: "#testimonials" },
     { title: "Case Studies", href: "#case-studies" },
-    { title: "Resources", href: "#resources" },
     { title: "About", href: "#about" },
     { title: "Contact", href: "#contact" },
   ];
@@ -394,49 +391,28 @@ const ServicesSection = () => {
     {
       id: "1",
       title: "Google Maps Optimization",
-      description: "Dominate local search results and get found first during emergencies",
+      description: "Finding The Best Marketing Solution For Your Business.",
       icon: <MapPin className="w-8 h-8" />,
       price: "From $2,500/month",
     },
     {
       id: "2",
-      title: "Emergency Vet Marketing",
-      description: "Crisis marketing strategies that work when pet owners need you most",
-      icon: <Clock className="w-8 h-8" />,
-      price: "From $1,800/month",
-    },
-    {
-      id: "3",
       title: "Local SEO for Vets",
-      description: "Rank #1 in your area for emergency veterinary services",
-      icon: <Award className="w-8 h-8" />,
+      description: "Finding The Best Marketing Solution For Your Business.",
+      icon: <Search className="w-8 h-8" />,
       price: "From $3,200/month",
     },
     {
-      id: "4",
-      title: "Crisis Marketing",
-      description: "Turn emergencies into opportunities with proven strategies",
-      icon: <Shield className="w-8 h-8" />,
-      price: "From $2,000/month",
-    },
-    {
-      id: "5",
+      id: "3",
       title: "Practice Growth",
-      description: "Scale your veterinary practice with data-driven marketing",
-      icon: <Users className="w-8 h-8" />,
+      description: "Finding The Best Marketing Solution For Your Business.",
+      icon: <TrendingUp className="w-8 h-8" />,
       price: "From $4,500/month",
-    },
-    {
-      id: "6",
-      title: "Emergency Response",
-      description: "24/7 marketing support when your practice needs it most",
-      icon: <Phone className="w-8 h-8" />,
-      price: "From $1,200/month",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-red-50 to-blue-50">
+    <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -445,15 +421,15 @@ const ServicesSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
-            Our Marketing Services
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-700 text-sm font-medium mb-4">
+            Services
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            We Offer A Wide Range Of Marketing Services
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Proven marketing strategies that help veterinary practices dominate local search during emergencies
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -464,29 +440,26 @@ const ServicesSection = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="group"
             >
-              <Card className="p-6 h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-200 group-hover:bg-white">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500 to-blue-500 rounded-xl mb-4 text-white group-hover:scale-110 transition-transform duration-200">
+              <div className="p-0.5 rounded-3xl group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-blue-500 transition-all duration-100">
+                <Card className={`p-6 text-center h-full bg-white border-0 shadow-md group-hover:shadow-2xl group-hover:shadow-red-500/20 transition-all duration-300 rounded-3xl`}>
+                <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-red-500 to-blue-500 rounded-full mb-4 text-white group-hover:scale-110 transition-transform duration-200">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-3">
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {service.title}
                 </h3>
-                <p className="text-slate-600 mb-4 flex-grow">
+                <p className="text-gray-600 mb-4 text-sm">
                   {service.description}
                 </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-lg font-semibold text-red-600">
-                    {service.price}
-                  </span>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="border-red-500 text-red-600 hover:bg-red-50"
-                  >
-                    Get Started
-                  </Button>
+                <div className="text-xl font-bold text-red-600 mb-4">
+                  {service.price}
                 </div>
-              </Card>
+                <a href="#" className="inline-flex items-center justify-center text-blue-600 hover:text-red-600 font-medium">
+                  Get Started
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </a>
+                </Card>
+              </div>
             </motion.div>
           ))}
         </div>
@@ -682,6 +655,8 @@ const AboutSection = () => {
 
 // Testimonials Section
 const TestimonialsSection = () => {
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  
   const testimonials: Testimonial[] = [
     {
       id: "1",
@@ -717,6 +692,18 @@ const TestimonialsSection = () => {
     },
   ];
 
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToTestimonial = (index: number) => {
+    setCurrentTestimonial(index);
+  };
+
   return (
     <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4">
@@ -735,42 +722,93 @@ const TestimonialsSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {testimonials.map((testimonial, index) => (
+        {/* Testimonial Slider */}
+        <div className="max-w-6xl mx-auto overflow-hidden">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
+              key={currentTestimonial}
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -200, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
               className="group"
             >
-              <Card className="p-6 h-full bg-white shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:border-blue-200">
-                <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-slate-800">{testimonial.name}</h4>
-                    <p className="text-sm text-slate-600">{testimonial.petName}</p>
+            <Card className="bg-gradient-to-r from-red-500 to-blue-500 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+                {/* Quote and Text Content */}
+                <div className="flex-1 text-white">
+                  <div className="flex items-start gap-4">
+                    <div className="text-6xl text-blue-200 font-bold leading-none">"</div>
+                    <div className="flex-1">
+                      <p className="text-lg lg:text-xl leading-relaxed mb-6">
+                        {testimonials[currentTestimonial].comment}
+                      </p>
+                      <div className="space-y-2">
+                        <p className="text-lg font-semibold">{testimonials[currentTestimonial].name}</p>
+                        <p className="text-blue-200">{testimonials[currentTestimonial].petName}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                  ))}
+
+                {/* Circular Portrait */}
+                <div className="flex-shrink-0">
+                  <div className="relative">
+                    <div className="w-32 h-32 bg-white rounded-full p-1 shadow-xl">
+                      <img
+                        src={testimonials[currentTestimonial].image}
+                        alt={testimonials[currentTestimonial].name}
+                        className="w-full h-full rounded-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
+                      <Star className="w-6 h-6 text-yellow-600 fill-current" />
+                    </div>
+                  </div>
                 </div>
-                
-                <p className="text-slate-600 italic leading-relaxed">
-                  "{testimonial.comment}"
-                </p>
-              </Card>
+              </div>
+            </Card>
             </motion.div>
-          ))}
+          </AnimatePresence>
+
+          {/* Navigation Controls */}
+          <div className="flex justify-center items-center space-x-4 mt-8">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prevTestimonial}
+              className="w-12 h-12 rounded-full border-2 border-red-500 text-red-500 hover:bg-red-50 bg-white shadow-sm flex items-center justify-center"
+              aria-label="Previous testimonial"
+            >
+              <ChevronRight className="w-5 h-5 rotate-180" />
+            </Button>
+            
+            {/* Dots Indicator */}
+            <div className="flex space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToTestimonial(index)}
+                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                    index === currentTestimonial 
+                      ? 'bg-red-500' 
+                      : 'bg-slate-300 hover:bg-slate-400'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={nextTestimonial}
+              className="w-12 h-12 rounded-full border-2 border-red-500 text-red-500 hover:bg-red-50 bg-red-50 shadow-sm flex items-center justify-center"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
@@ -779,38 +817,55 @@ const TestimonialsSection = () => {
 
 // Case Studies Section
 const CaseStudiesSection = () => {
+  const [currentCaseStudy, setCurrentCaseStudy] = useState(0);
+  
   const caseStudies = [
     {
       id: "1",
-      title: "Google Maps Domination",
-      problem: "Westside Animal Hospital ranked on page 3 for emergency vet services",
-      solution: "Comprehensive Google Maps optimization and local SEO strategy",
-      results: "Moved to #1 position, 300% increase in emergency calls",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      metrics: "300% Increase in Calls"
+      title: "Westside Animal Hospital",
+      description: "Optimizing emergency vet visibility, enabling a real-time 360-degree view of local search dominance.",
+      testimonial: "It was a game-changer for us. They took our vague ideas and transformed them into a sleek, user-friendly interface that our customers love. Their attention to detail and understanding of user experience truly sets them apart. Highly recommend!"
     },
     {
       id: "2", 
-      title: "Crisis Marketing Success",
-      problem: "Emergency Pet Care Center struggling during major pet emergency",
-      solution: "Emergency marketing campaign and crisis response strategy",
-      results: "15 new emergency clients in one weekend, 250% revenue increase",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      metrics: "250% Revenue Increase"
+      title: "Emergency Pet Care Center",
+      description: "The end result is a platform that not only looks stunning but also performs exceptionally well. We couldn't be happier with the outcome.",
+      testimonial: "They modernized our website with an intuitive research and design strategy. Always responsive and professional."
     },
     {
       id: "3",
-      title: "Local SEO Transformation",
-      problem: "24/7 Vet Emergency Clinic invisible in local search results",
-      solution: "Complete local SEO overhaul and Google My Business optimization",
-      results: "First page ranking for all emergency vet keywords, 400% more patients",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
-      metrics: "400% More Patients"
+      title: "24/7 Vet Emergency Clinic",
+      description: "Professional and innovative approach to product delivery. The solution is intuitive and efficient.",
+      testimonial: "Outstanding results! Our emergency cases increased by 300% in just 6 months. Highly recommend their services."
+    },
+    {
+      id: "4",
+      title: "Metro Animal Emergency",
+      description: "Revolutionary marketing approach that transformed our emergency patient acquisition. The results speak for themselves.",
+      testimonial: "Their crisis marketing strategies are incredible. When we had a major emergency situation, they helped us dominate local search."
+    },
+    {
+      id: "5",
+      title: "City Vet Emergency",
+      description: "Cutting-edge local SEO optimization that put us on the map. Our emergency calls increased dramatically.",
+      testimonial: "The Google Maps optimization was a game-changer. We're now the first practice pet owners see when they search for emergency vet care."
     }
   ];
 
+  const nextCaseStudy = () => {
+    setCurrentCaseStudy((prev) => (prev + 1) % caseStudies.length);
+  };
+
+  const prevCaseStudy = () => {
+    setCurrentCaseStudy((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+  };
+
+  const goToCaseStudy = (index: number) => {
+    setCurrentCaseStudy(index);
+  };
+
   return (
-    <section id="case-studies" className="py-20 bg-white">
+    <section id="case-studies" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -819,67 +874,121 @@ const CaseStudiesSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
-            Marketing Success Stories
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            Case Studies
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Real results, real growth - see how we've helped veterinary practices dominate local search and grow their emergency patient base
-          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {caseStudies.map((study, index) => (
-            <motion.div
-              key={study.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="group"
-            >
-              <Card className="overflow-hidden bg-white shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:border-blue-200">
-                <div className="relative">
-                  <img
-                    src={study.image}
-                    alt={study.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  {/*<div className="absolute top-4 right-4">
-                    <Badge className="bg-red-500 text-white">
-                      {study.metrics}
-                    </Badge>
-                  </div>*/}
-                </div>
-                
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-slate-800 mb-4">{study.title}</h3>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-red-600 mb-2">Problem:</h4>
-                      <p className="text-slate-600 text-sm">{study.problem}</p>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-blue-600 mb-2">Solution:</h4>
-                      <p className="text-slate-600 text-sm">{study.solution}</p>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-semibold text-green-600 mb-2">Results:</h4>
-                      <p className="text-slate-600 text-sm font-medium">{study.results}</p>
+        {/* Case Study Carousel */}
+        <div className="max-w-7xl mx-auto">
+          <div className="relative">
+            {/* Carousel Container */}
+            <div className="flex items-center justify-center">
+              {/* Previous Card (Left) */}
+              <div className="w-1/4 opacity-50 transform scale-90 -mr-8 z-10">
+                <Card className="bg-gray-800 text-white rounded-2xl p-6 h-80 overflow-hidden">
+                  <div className="relative h-32 mb-4 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <MapPin className="w-8 h-8 text-white" />
+                      </div>
+                      <p className="text-xs text-white/80">Emergency Vet Marketing</p>
                     </div>
                   </div>
-                  
-                   <Button className="w-full mt-6 bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white flex items-center justify-center">
-                     See Full Case Study
-                     <ChevronRight className="w-4 h-4 ml-2" />
-                   </Button>
+                  <h3 className="text-lg font-bold mb-2 truncate">
+                    {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].title}
+                  </h3>
+                  <p className="text-sm text-gray-300 line-clamp-3">
+                    {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].description}
+                  </p>
+                </Card>
+              </div>
+
+              {/* Current Card (Center) */}
+              <div className="w-1/2 z-20">
+                <motion.div
+                  key={currentCaseStudy}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <Card className="bg-gray-800 text-white rounded-2xl p-8 h-96 shadow-2xl">
+                    <div className="relative h-40 mb-6 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
+                      <div className="text-center">
+                        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <Award className="w-10 h-10 text-white" />
+                        </div>
+                        <p className="text-sm text-white/90">Veterinary Marketing Success</p>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold mb-4">
+                      {caseStudies[currentCaseStudy].title}
+                    </h3>
+                    <p className="text-gray-300 mb-6 leading-relaxed">
+                      {caseStudies[currentCaseStudy].description}
+                    </p>
+                    <Button className="bg-white text-gray-800 hover:bg-gray-100 font-semibold px-6 py-2 rounded-lg">
+                      VIEW
+                    </Button>
+                  </Card>
+                </motion.div>
+              </div>
+
+              {/* Next Card (Right) */}
+              <div className="w-1/4 opacity-50 transform scale-90 -ml-8 z-10">
+                <Card className="bg-gray-800 text-white rounded-2xl p-6 h-80 overflow-hidden">
+                  <div className="relative h-32 mb-4 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <TrendingUp className="w-8 h-8 text-white" />
+                      </div>
+                      <p className="text-xs text-white/80">Practice Growth</p>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold mb-2 truncate">
+                    {caseStudies[(currentCaseStudy + 1) % caseStudies.length].title}
+                  </h3>
+                  <p className="text-sm text-gray-300 line-clamp-3">
+                    {caseStudies[(currentCaseStudy + 1) % caseStudies.length].description}
+                  </p>
+                </Card>
+              </div>
+            </div>
+
+            {/* Testimonial Quote */}
+            <motion.div
+              key={`testimonial-${currentCaseStudy}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mt-8 max-w-4xl mx-auto"
+            >
+              <Card className="bg-white rounded-2xl p-8 shadow-lg">
+                <div className="text-center">
+                  <div className="text-6xl text-gray-300 font-bold leading-none mb-4">"</div>
+                  <p className="text-lg text-gray-700 italic leading-relaxed">
+                    {caseStudies[currentCaseStudy].testimonial}
+                  </p>
                 </div>
               </Card>
             </motion.div>
-          ))}
+          </div>
+
+          {/* Navigation Dots */}
+          <div className="flex justify-center space-x-2 mt-8">
+            {caseStudies.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToCaseStudy(index)}
+                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  index === currentCaseStudy 
+                    ? 'bg-gray-800' 
+                    : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to case study ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -1066,7 +1175,6 @@ const Footer = () => {
               <li><a href="#services" className="text-slate-300 hover:text-white transition-colors">Services</a></li>
               <li><a href="#testimonials" className="text-slate-300 hover:text-white transition-colors">Testimonials</a></li>
               <li><a href="#case-studies" className="text-slate-300 hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#resources" className="text-slate-300 hover:text-white transition-colors">Resources</a></li>
               <li><a href="#about" className="text-slate-300 hover:text-white transition-colors">About Us</a></li>
               <li><a href="#contact" className="text-slate-300 hover:text-white transition-colors">Contact</a></li>
               <li><a href="tel:+1234567890" className="text-slate-300 hover:text-white transition-colors">Emergency Care</a></li>
@@ -1126,108 +1234,6 @@ const Footer = () => {
   );
 };
 
-// Resources Section
-const ResourcesSection = () => {
-  const resources = [
-    {
-      id: "1",
-      title: "Pet Care Tips",
-      description: "Essential tips for keeping your pet healthy and happy",
-      icon: <Heart className="w-6 h-6" />,
-      link: "#"
-    },
-    {
-      id: "2", 
-      title: "Health Guides",
-      description: "Comprehensive guides for common pet health issues",
-      icon: <Stethoscope className="w-6 h-6" />,
-      link: "#"
-    },
-    {
-      id: "3",
-      title: "Emergency Info",
-      description: "What to do in case of a pet emergency",
-      icon: <Clock className="w-6 h-6" />,
-      link: "#"
-    },
-    {
-      id: "4",
-      title: "Vaccination Schedule",
-      description: "Keep track of your pet's vaccination timeline",
-      icon: <Shield className="w-6 h-6" />,
-      link: "#"
-    },
-    {
-      id: "5",
-      title: "Pet Insurance",
-      description: "Information about pet insurance options",
-      icon: <Award className="w-6 h-6" />,
-      link: "#"
-    },
-    {
-      id: "6",
-      title: "Nutrition Guide",
-      description: "Proper nutrition for different life stages",
-      icon: <PawPrint className="w-6 h-6" />,
-      link: "#"
-    }
-  ];
-
-  return (
-    <section id="resources" className="py-20 bg-gradient-to-br from-red-50 to-blue-50">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
-            Marketing Resources
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Access our comprehensive library of veterinary marketing guides, strategies, and tips to help you dominate local search and grow your practice
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {resources.map((resource, index) => (
-            <motion.div
-              key={resource.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="group"
-            >
-              <Card className="p-6 h-full bg-white/80 backdrop-blur-sm border-0 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:bg-white cursor-pointer">
-                <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500 to-blue-500 rounded-xl mb-4 text-white group-hover:scale-110 transition-transform duration-200">
-                  {resource.icon}
-                </div>
-                <h3 className="text-xl font-semibold text-slate-800 mb-3">
-                  {resource.title}
-                </h3>
-                <p className="text-slate-600 mb-4 flex-grow">
-                  {resource.description}
-                </p>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  className="border-red-500 text-red-600 hover:bg-red-50 w-full flex items-center justify-center"
-                >
-                  Learn More
-                  <ChevronRight className="w-4 h-4 ml-2" />
-                </Button>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // Contact Section
 const ContactSection = () => {
@@ -1720,7 +1726,6 @@ function App() {
         <ServicesSection />
         <TestimonialsSection />
         <CaseStudiesSection />
-        <ResourcesSection />
         <AboutSection />
         <LeadMagnetSection />
         <ContactSection />
