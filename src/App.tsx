@@ -777,7 +777,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-red-500 text-red-500 hover:bg-red-50 bg-white shadow-sm flex items-center justify-center"
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-blue-50 shadow-sm flex items-center justify-center"
               aria-label="Previous testimonial"
             >
               <ChevronRight className="w-5 h-5 rotate-180" />
@@ -791,7 +791,7 @@ const TestimonialsSection = () => {
                   onClick={() => goToTestimonial(index)}
                   className={`w-3 h-3 rounded-full transition-colors duration-200 ${
                     index === currentTestimonial 
-                      ? 'bg-red-500' 
+                      ? 'bg-blue-600' 
                       : 'bg-slate-300 hover:bg-slate-400'
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
@@ -803,7 +803,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-red-500 text-red-500 hover:bg-red-50 bg-red-50 shadow-sm flex items-center justify-center"
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-grey-50 shadow-sm flex items-center justify-center"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />
@@ -865,7 +865,7 @@ const CaseStudiesSection = () => {
   };
 
   return (
-    <section id="case-studies" className="py-20 bg-gray-50">
+    <section id="case-studies" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -881,26 +881,39 @@ const CaseStudiesSection = () => {
 
         {/* Case Study Carousel */}
         <div className="max-w-7xl mx-auto">
-          <div className="relative">
+          <div className="relative pb-8">
             {/* Carousel Container */}
             <div className="flex items-center justify-center">
               {/* Previous Card (Left) */}
-              <div className="w-1/4 opacity-50 transform scale-90 -mr-8 z-10">
-                <Card className="bg-gray-800 text-white rounded-2xl p-6 h-80 overflow-hidden">
-                  <div className="relative h-32 mb-4 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <MapPin className="w-8 h-8 text-white" />
-                      </div>
-                      <p className="text-xs text-white/80">Emergency Vet Marketing</p>
-                    </div>
+              <div className="w-1/4 opacity-50 transform scale-90 -mr-6 z-10">
+                <Card className="relative bg-gray-800 text-white rounded-2xl p-3 h-48 shadow-2xl overflow-hidden">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
+                    <img
+                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="SEO analytics dashboard"
+                      className="w-full h-full object-cover opacity-30"
+                    />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 truncate">
-                    {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].title}
-                  </h3>
-                  <p className="text-sm text-gray-300 line-clamp-3">
-                    {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].description}
-                  </p>
+                  
+                  {/* Content Overlay */}
+                  <div className="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2 text-white">
+                        {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].title}
+                      </h3>
+                      <p className="text-xs text-gray-200 mb-2 leading-relaxed">
+                        {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].description}
+                      
+                      </p>
+                      {/* Transparent Button */}
+                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-2 py-1 rounded-lg text-xs w-fit">
+                      VIEW
+                    </Button>
+                    </div>
+                    
+                    
+                  </div>
                 </Card>
               </div>
 
@@ -912,82 +925,158 @@ const CaseStudiesSection = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 >
-                  <Card className="bg-gray-800 text-white rounded-2xl p-8 h-96 shadow-2xl">
-                    <div className="relative h-40 mb-6 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
-                          <Award className="w-10 h-10 text-white" />
-                        </div>
-                        <p className="text-sm text-white/90">Veterinary Marketing Success</p>
-                      </div>
+                  <Card className="relative bg-gray-800 text-white rounded-2xl p-4 h-64 shadow-2xl overflow-hidden">
+                    {/* Background Image */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
+                      <img
+                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="Veterinary practice"
+                        className="w-full h-full object-cover opacity-30"
+                      />
                     </div>
-                    <h3 className="text-2xl font-bold mb-4">
-                      {caseStudies[currentCaseStudy].title}
-                    </h3>
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      {caseStudies[currentCaseStudy].description}
-                    </p>
-                    <Button className="bg-white text-gray-800 hover:bg-gray-100 font-semibold px-6 py-2 rounded-lg">
-                      VIEW
-                    </Button>
+                    
+                    {/* Content Overlay */}
+                    <div className="relative z-10 flex flex-col justify-between h-full">
+                      <div>
+                        <h3 className="text-lg font-semibold mb-2">
+                          {caseStudies[currentCaseStudy].title}
+                        </h3>
+                        <p className="text-xs text-gray-200 mb-3 leading-relaxed">
+                          {caseStudies[currentCaseStudy].description}
+                        </p>
+                        {/* Transparent Button */}
+                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-3 py-1.5 rounded-lg text-xs w-fit">
+                        VIEW
+                      </Button>
+                      </div>
+                      </div>
                   </Card>
                 </motion.div>
               </div>
 
               {/* Next Card (Right) */}
-              <div className="w-1/4 opacity-50 transform scale-90 -ml-8 z-10">
-                <Card className="bg-gray-800 text-white rounded-2xl p-6 h-80 overflow-hidden">
-                  <div className="relative h-32 mb-4 bg-gradient-to-br from-red-500 to-blue-500 rounded-lg flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                        <TrendingUp className="w-8 h-8 text-white" />
-                      </div>
-                      <p className="text-xs text-white/80">Practice Growth</p>
-                    </div>
+              <div className="w-1/4 opacity-50 transform scale-90 -ml-6 z-10">
+                <Card className="relative bg-gray-800 text-white rounded-2xl p-3 h-48 shadow-2xl overflow-hidden">
+                  {/* Background Image */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
+                    <img
+                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                      alt="Veterinary practice"
+                      className="w-full h-full object-cover opacity-30"
+                    />
                   </div>
-                  <h3 className="text-lg font-bold mb-2 truncate">
-                    {caseStudies[(currentCaseStudy + 1) % caseStudies.length].title}
-                  </h3>
-                  <p className="text-sm text-gray-300 line-clamp-3">
-                    {caseStudies[(currentCaseStudy + 1) % caseStudies.length].description}
-                  </p>
+                  
+                  {/* Content Overlay */}
+                  <div className="relative z-10 flex flex-col justify-between h-full">
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2 text-white">
+                        {caseStudies[(currentCaseStudy + 1) % caseStudies.length].title}
+                      </h3>
+                      <p className="text-xs text-gray-200 mb-2 leading-relaxed">
+                        {caseStudies[(currentCaseStudy + 1) % caseStudies.length].description}
+                        
+                      </p>
+                      {/* Transparent Button */}
+                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-2 py-1 rounded-lg text-xs w-fit">
+                      VIEW
+                    </Button>
+                    </div>
+                    
+                    
+                  </div>
                 </Card>
               </div>
             </div>
 
-            {/* Testimonial Quote */}
+            {/* Testimonial Quotes for each case study */}
+            <div className="flex items-start justify-center gap-4 mt-4">
+              {/* Previous Testimonial */}
+              <div className="w-1/4 h-10 opacity-50 transform scale-90 -mr-16 -mt-24">
+                <Card className="bg-white rounded-2xl p-4 shadow-lg">
+                  <div className="text-center relative">
+                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -left-2 -top-1">"</div>
+                    <p className="text-xs text-gray-700 italic leading-relaxed px-4">
+                      {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].testimonial}
+                    </p>
+                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -right-2 -top-1">"</div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* Current Testimonial */}
+              <div className="w-1/2">
+                {/* Testimonial Quote - Center of case study area */}
             <motion.div
               key={`testimonial-${currentCaseStudy}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="mt-8 max-w-4xl mx-auto"
+              className="absolute right-[317px] top-[200px] transform -translate-x-1/2 -translate-y-1/2 w-[600px] max-w-2xl z-30"
             >
-              <Card className="bg-white rounded-2xl p-8 shadow-lg">
-                <div className="text-center">
-                  <div className="text-6xl text-gray-300 font-bold leading-none mb-4">"</div>
-                  <p className="text-lg text-gray-700 italic leading-relaxed">
-                    {caseStudies[currentCaseStudy].testimonial}
-                  </p>
-                </div>
-              </Card>
+                <Card className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
+                  <div className="text-center relative">
+                    <div className="text-6xl text-gray-300 font-bold leading-none absolute -left-4 -top-2">"</div>
+                    <p className="text-base text-gray-700 italic leading-relaxed px-8">
+                      {caseStudies[currentCaseStudy].testimonial}
+                    </p>
+                    <div className="text-6xl text-gray-300 font-bold leading-none absolute -right-4 -top-2">"</div>
+                  </div>
+                </Card>
             </motion.div>
+              </div>
+
+              {/* Next Testimonial quote */}
+              <div className="w-1/4 h-10 opacity-50 transform scale-90 -ml-14 -mt-24">
+                <Card className="bg-white rounded-2xl p-4 shadow-lg">
+                  <div className="text-center relative">
+                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -left-2 -top-1">"</div>
+                    <p className="text-xs text-gray-700 italic leading-relaxed px-4">
+                      {caseStudies[(currentCaseStudy + 1) % caseStudies.length].testimonial}
+                    </p>
+                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -right-2 -top-1">"</div>
+                  </div>
+                </Card>
+              </div>
+            </div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center space-x-2 mt-8">
-            {caseStudies.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToCaseStudy(index)}
-                className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                  index === currentCaseStudy 
-                    ? 'bg-gray-800' 
-                    : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                aria-label={`Go to case study ${index + 1}`}
-              />
-            ))}
+          {/* Slider Navigation */}
+          <div className="flex justify-center items-center space-x-4 mt-24">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={prevCaseStudy}
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
+              aria-label="Previous case study"
+            >
+              <ChevronRight className="w-5 h-5 rotate-180" />
+            </Button>
+            
+            {/* Navigation Dots */}
+            <div className="flex space-x-2">
+              {caseStudies.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => goToCaseStudy(index)}
+                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                    index === currentCaseStudy 
+                      ? 'bg-blue-600' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to case study ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={nextCaseStudy}
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
+              aria-label="Next case study"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
           </div>
         </div>
       </div>
@@ -1297,10 +1386,10 @@ const ContactSection = () => {
                 </motion.div>
 
                 <motion.div
-                  className="flex items-center space-x-4 p-4 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors duration-300"
+                  className="flex items-center space-x-4 p-4 rounded-lg bg-red-50 hover:bg-red-100 transition-colors duration-300"
                   whileHover={{ scale: 1.02 }}
                 >
-                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
