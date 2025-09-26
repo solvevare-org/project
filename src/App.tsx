@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+// URGENT VET White Background.png
+import URGENTVETWhiteBackground from "../public/URGENT_VET_White_Background.png";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   Heart,
@@ -103,8 +105,9 @@ const VetNavigation = () => {
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-24">
+          <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="ml-4 w-[250px] h-[70px]" />
+          {/* Logo
            <motion.div
              className="flex items-center space-x-2"
              whileHover={{ scale: 1.05 }}
@@ -121,7 +124,7 @@ const VetNavigation = () => {
                <span className="text-xl font-bold text-blue-600">URGENT VET</span>
                <span className="text-xl font-bold text-red-500 -mt-1">MARKETING</span>
              </div>
-           </motion.div>
+           </motion.div> */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -163,13 +166,12 @@ const VetNavigation = () => {
               <SheetContent>
                 <SheetHeader>
                  <SheetTitle className="flex items-center space-x-2">
-                   <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center">
-                     <PawPrint className="w-4 h-4 text-white" />
-                   </div>
-                   <div className="flex flex-col">
-                     <span className="text-blue-600 font-bold">URGENT VET</span>
-                     <span className="text-red-500 font-bold -mt-1">MARKETING</span>
-                   </div>
+                   <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="w-10 h-10" />
+                   {/* <div className="flex flex-col"> */}
+                     {/* <span className="text-blue-600 font-bold">URGENT VET</span> */}
+                     {/* <span className="text-red-500 font-bold -mt-1">MARKETING</span> */}
+                   {/* </div> */}
+
                  </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col space-y-4 mt-8">
@@ -321,24 +323,24 @@ const HeroSection = () => {
 const TrustBadges = () => {
   const badges = [
     {
-      icon: <Award className="w-8 h-8 text-yellow-600" />,
-      title: "Google Certified",
-      description: "Certified Google Ads and Analytics professionals",
+      icon: <Award className="w-8 h-8 text-[#888888]" />,
+      title: "  Google Certified",
+      
     },
     {
-      icon: <Shield className="w-8 h-8 text-blue-600" />,
-      title: "Vet Industry Experts",
-      description: "Specialized in veterinary practice marketing",
+      icon: <Shield className="w-8 h-8 text-[#888888]" />,
+      title: "Vet Industry",
+      
     },
     {
-      icon: <Star className="w-8 h-8 text-green-600" />,
-      title: "Proven Results",
-      description: "Helped 500+ vet practices grow their business",
+      icon: <Star className="w-8 h-8 text-[#888888]" />,
+      title: "  Proven Results",
+      
     },
     {
-      icon: <Clock className="w-8 h-8 text-purple-600" />,
-      title: "24/7 Support",
-      description: "Emergency marketing support when you need it",
+      icon: <Clock className="w-8 h-8 text-[#888888]" />,
+      title: "  24/7 Support",
+      
     },
   ];
 
@@ -361,22 +363,20 @@ const TrustBadges = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
           {badges.map((badge, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.2, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.05 }}
-              className="text-center p-6 rounded-xl bg-gradient-to-br from-slate-50 to-white shadow-lg hover:shadow-xl transition-all duration-300"
+              className="text-center p-6 rounded-xl transition-all duration-300"
             >
-              <div className="flex justify-center mb-4">{badge.icon}</div>
-              <h3 className="font-semibold text-slate-800 mb-2">
-                {badge.title}
-              </h3>
-              <p className="text-sm text-slate-600">{badge.description}</p>
+              <div className="flex justify-center mx-4 mb-0">{badge.icon} <span className=" mx-2 text-lg font-extrabold text-[#888888]">{badge.title}</span></div>
+              
+              
             </motion.div>
           ))}
         </div>
@@ -413,7 +413,7 @@ const ServicesSection = () => {
 
   return (
     <section id="services" className="py-20 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -424,8 +424,11 @@ const ServicesSection = () => {
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-red-100 text-red-700 text-sm font-medium mb-4">
             Services
           </div>
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            We Offer A Wide Range Of Marketing Services
+          <h2 className="text-[45px] font-semibold text-gray-900">
+            We Offer A Wide Range Of
+          </h2>
+          <h2 className="text-[45px] font-semibold text-gray-900">
+            Marketing Services
           </h2>
         </motion.div>
 
@@ -440,15 +443,15 @@ const ServicesSection = () => {
               whileHover={{ scale: 1.05, y: -5 }}
               className="group"
             >
-              <div className="p-0.5 rounded-3xl group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-blue-500 transition-all duration-100">
-                <Card className={`p-6 text-center h-full bg-white border-0 shadow-md group-hover:shadow-2xl group-hover:shadow-red-500/20 transition-all duration-300 rounded-3xl`}>
-                <div className="flex items-center justify-center w-14 h-14 bg-gradient-to-r from-red-500 to-blue-500 rounded-full mb-4 text-white group-hover:scale-110 transition-transform duration-200">
+              <div className="p-0.5 rounded-[40px] group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:to-blue-500 transition-all duration-100">
+                <Card className={`p-6 text-center h-full bg-white border-0 shadow-md group-hover:shadow-2xl group-hover:shadow-red-500/20 transition-all duration-300 rounded-[40px]`}>
+                <div className="flex items-center justify-center mx-auto w-14 h-14 bg-gradient-to-r from-red-500 to-blue-500 rounded-full mb-4 text-white group-hover:scale-110 transition-transform duration-200">
                   {service.icon}
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                <h3 className="text-[22px] font-bold text-gray-900">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 mb-4 text-sm">
+                <p className="text-black mb-4 text-sm w-60 mx-auto">
                   {service.description}
                 </p>
                 <div className="text-xl font-bold text-red-600 mb-4">
@@ -617,7 +620,7 @@ const AboutSection = () => {
                variant="outline"
                size="icon"
                onClick={nextExpert}
-               className="w-12 h-12 rounded-full border-2 border-blue-500 text-blue-500 hover:bg-blue-50 bg-blue-50 shadow-sm flex items-center justify-center"
+               className="w-12 h-12 rounded-full border-2 border-blue-500 text-blue-500 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
                aria-label="Next expert"
              >
                <ChevronRight className="w-5 h-5" />
@@ -664,7 +667,7 @@ const TestimonialsSection = () => {
       petName: "Owner, Westside Animal Hospital",
       rating: 5,
       comment: "Urgent Vet Marketing transformed our practice! We went from 3rd page on Google to #1 for emergency vet services. Our emergency cases increased by 300% in just 6 months.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80",
+      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
     },
     {
       id: "2",
@@ -723,7 +726,7 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Testimonial Slider */}
-        <div className="max-w-6xl mx-auto overflow-hidden">
+        <div className="max-w-6xl mx-28 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentTestimonial}
@@ -733,37 +736,35 @@ const TestimonialsSection = () => {
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="group"
             >
-            <Card className="bg-gradient-to-r from-red-500 to-blue-500 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
+            <Card className="bg-gradient-to-r from-red-500 to-blue-500 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300">
               <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
                 {/* Quote and Text Content */}
-                <div className="flex-1 text-white">
+                <div className="flex-1 text-white ml-24">
                   <div className="flex items-start gap-4">
                     <div className="text-6xl text-blue-200 font-bold leading-none">"</div>
                     <div className="flex-1">
-                      <p className="text-lg lg:text-xl leading-relaxed mb-6">
+                      <p className="text-lg lg:text-xl leading-relaxed mb-6 w-96">
                         {testimonials[currentTestimonial].comment}
                       </p>
                       <div className="space-y-2">
-                        <p className="text-lg font-semibold">{testimonials[currentTestimonial].name}</p>
-                        <p className="text-blue-200">{testimonials[currentTestimonial].petName}</p>
+                        <p className="text-lg font-semibold w-96">{testimonials[currentTestimonial].name + " | " + testimonials[currentTestimonial].petName}</p>
+                      
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Circular Portrait */}
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 gap-4">
                   <div className="relative">
-                    <div className="w-32 h-32 bg-white rounded-full p-1 shadow-xl">
+                    <div className="w-52 h-52 mr-24 border-4 border-white rounded-full">
                       <img
                         src={testimonials[currentTestimonial].image}
                         alt={testimonials[currentTestimonial].name}
                         className="w-full h-full rounded-full object-cover"
                       />
                     </div>
-                    <div className="absolute -top-2 -right-2 bg-yellow-400 rounded-full p-2">
-                      <Star className="w-6 h-6 text-yellow-600 fill-current" />
-                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -777,7 +778,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-blue-50 shadow-sm flex items-center justify-center"
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
               aria-label="Previous testimonial"
             >
               <ChevronRight className="w-5 h-5 rotate-180" />
@@ -803,7 +804,7 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-grey-50 shadow-sm flex items-center justify-center"
+              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
               aria-label="Next testimonial"
             >
               <ChevronRight className="w-5 h-5" />
@@ -816,273 +817,185 @@ const TestimonialsSection = () => {
 };
 
 // Case Studies Section
+
+
+const caseStudies = [
+  {
+    company: "TechTrendz Inc",
+    description:
+      "Optimizing downstream operations, enabling real-time 360-degree view of operations.",
+    testimonial:
+      "It was a game-changer for us. They took our vague ideas and transformed them into a sleek, user-friendly interface that our customers love. Their attention to detail and understanding of user experience truly sets them apart. Highly recommend!",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    company: "DDR Dynamics",
+    description:
+      "The end result is a platform that not only looks stunning but also performs exceptionally well.",
+    testimonial:
+      "They not only modernized our website but ensured every interaction was intuitive. From research and design strategy to execution, they were always responsive and professional.",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    company: "Visionary Labs",
+    description:
+      "Revolutionizing the way companies manage data and customer interactions globally.",
+    testimonial:
+      "Their innovative approach to design and tech was exactly what we needed. They understood our vision and delivered beyond expectations. Truly a partner, not just a vendor.",
+    image:
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1400&q=80",
+  },
+];
+
+const caseStudiesSection = [
+  {
+    title: "TechTrendz Inc",
+    description:
+      "Optimizing downstream operations, enabling real-time 360-degree view of operations.",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+    testimonial:
+      "It was a game-changer for us. They took our vague ideas and transformed them into a sleek, user-friendly interface that our customers love. Their attention to detail and understanding of user experience truly sets them apart. Highly recommend!",
+  },
+  {
+    title: "DDR Dynamics",
+    description:
+      "Building scalable cloud solutions tailored to enterprise growth and automation.",
+    image:
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1400&q=80",
+    testimonial:
+      "Not only did they modernize our system, but they also helped us align strategy with execution. Truly professional and innovative.",
+  },
+  {
+    title: "Alpha Systems",
+    description:
+      "Leveraging AI to provide predictive insights that improve efficiency and reduce costs.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
+    testimonial:
+      "Their AI-driven solutions helped us cut costs by 20% and improved decision-making across teams.",
+  },
+]
 const CaseStudiesSection = () => {
-  const [currentCaseStudy, setCurrentCaseStudy] = useState(0);
-  
-  const caseStudies = [
-    {
-      id: "1",
-      title: "Westside Animal Hospital",
-      description: "Optimizing emergency vet visibility, enabling a real-time 360-degree view of local search dominance.",
-      testimonial: "It was a game-changer for us. They took our vague ideas and transformed them into a sleek, user-friendly interface that our customers love. Their attention to detail and understanding of user experience truly sets them apart. Highly recommend!"
-    },
-    {
-      id: "2", 
-      title: "Emergency Pet Care Center",
-      description: "The end result is a platform that not only looks stunning but also performs exceptionally well. We couldn't be happier with the outcome.",
-      testimonial: "They modernized our website with an intuitive research and design strategy. Always responsive and professional."
-    },
-    {
-      id: "3",
-      title: "24/7 Vet Emergency Clinic",
-      description: "Professional and innovative approach to product delivery. The solution is intuitive and efficient.",
-      testimonial: "Outstanding results! Our emergency cases increased by 300% in just 6 months. Highly recommend their services."
-    },
-    {
-      id: "4",
-      title: "Metro Animal Emergency",
-      description: "Revolutionary marketing approach that transformed our emergency patient acquisition. The results speak for themselves.",
-      testimonial: "Their crisis marketing strategies are incredible. When we had a major emergency situation, they helped us dominate local search."
-    },
-    {
-      id: "5",
-      title: "City Vet Emergency",
-      description: "Cutting-edge local SEO optimization that put us on the map. Our emergency calls increased dramatically.",
-      testimonial: "The Google Maps optimization was a game-changer. We're now the first practice pet owners see when they search for emergency vet care."
-    }
-  ];
+  const [current, setCurrent] = useState(0);
 
-  const nextCaseStudy = () => {
-    setCurrentCaseStudy((prev) => (prev + 1) % caseStudies.length);
-  };
-
-  const prevCaseStudy = () => {
-    setCurrentCaseStudy((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
-  };
-
-  const goToCaseStudy = (index: number) => {
-    setCurrentCaseStudy(index);
-  };
+  const prevIndex = (current - 1 + caseStudies.length) % caseStudies.length;
+  const nextIndex = (current + 1) % caseStudies.length;
 
   return (
-    <section id="case-studies" className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            Case Studies
-          </h2>
-        </motion.div>
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-gray-900 mb-12">
+          Case Studies
+        </h2>
 
-        {/* Case Study Carousel */}
-        <div className="max-w-7xl mx-auto">
-          <div className="relative pb-8">
-            {/* Carousel Container */}
-            <div className="flex items-center justify-center">
-              {/* Previous Card (Left) */}
-              <div className="w-1/4 opacity-50 transform scale-90 -mr-6 z-10">
-                <Card className="relative bg-gray-800 text-white rounded-2xl p-3 h-48 shadow-2xl overflow-hidden">
-                  {/* Background Image */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
-                    <img
-                      src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      alt="SEO analytics dashboard"
-                      className="w-full h-full object-cover opacity-30"
-                    />
-                  </div>
-                  
-                  {/* Content Overlay */}
-                  <div className="relative z-10 flex flex-col justify-between h-full">
-                    <div>
-                      <h3 className="text-sm font-semibold mb-2 text-white">
-                        {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].title}
-                      </h3>
-                      <p className="text-xs text-gray-200 mb-2 leading-relaxed">
-                        {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].description}
-                      
-                      </p>
-                      {/* Transparent Button */}
-                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-2 py-1 rounded-lg text-xs w-fit">
-                      VIEW
-                    </Button>
-                    </div>
-                    
-                    
-                  </div>
-                </Card>
+        {/* Carousel */}
+        <div className="relative flex items-center justify-center space-x-6">
+          {/* Left Navigation Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setCurrent((prev) => (prev === 0 ? caseStudiesSection.length - 1 : prev - 1))}
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+            aria-label="Previous case study"
+          >
+            <ChevronRight className="w-5 h-5 rotate-180" />
+          </Button>
+
+          {/* Left Card */}
+          <div className="w-1/4 opacity-40 scale-90">
+            <Card className="overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={caseStudiesSection[prevIndex].image}
+                alt={caseStudiesSection[prevIndex].title}
+                className="w-full h-48 object-cover"
+              />
+            </Card>
+          </div>
+
+          {/* Center Card */}
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="w-1/2"
+          >
+            <Card className="relative overflow-hidden rounded-3xl shadow-xl bg-gray-900 text-white h-80">
+              <img
+                 src={caseStudiesSection[current].image}
+                 alt={caseStudiesSection[current].title}
+                className="absolute inset-0 w-full h-full object-cover opacity-60"
+              />
+              <div className="relative z-10 flex flex-col justify-end p-32 pl-14 h-full text-left">
+                <h3 className="text-xl font-semibold mb-2">
+                  {caseStudiesSection[current].title}
+                </h3>
+                <p className="text-sm mb-4">{caseStudiesSection[current].description}</p>
+                <Button className="w-fit bg-white text-gray-900 font-semibold px-5 py-2 rounded-full">
+                  View
+                </Button>
               </div>
+            </Card>
 
-              {/* Current Card (Center) */}
-              <div className="w-1/2 z-20">
-                <motion.div
-                  key={currentCaseStudy}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <Card className="relative bg-gray-800 text-white rounded-2xl p-4 h-64 shadow-2xl overflow-hidden">
-                    {/* Background Image */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
-                      <img
-                        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Veterinary practice"
-                        className="w-full h-full object-cover opacity-30"
-                      />
-                    </div>
-                    
-                    {/* Content Overlay */}
-                    <div className="relative z-10 flex flex-col justify-between h-full">
-                      <div>
-                        <h3 className="text-lg font-semibold mb-2">
-                          {caseStudies[currentCaseStudy].title}
-                        </h3>
-                        <p className="text-xs text-gray-200 mb-3 leading-relaxed">
-                          {caseStudies[currentCaseStudy].description}
-                        </p>
-                        {/* Transparent Button */}
-                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-3 py-1.5 rounded-lg text-xs w-fit">
-                        VIEW
-                      </Button>
-                      </div>
-                      </div>
-                  </Card>
-                </motion.div>
-              </div>
-
-              {/* Next Card (Right) */}
-              <div className="w-1/4 opacity-50 transform scale-90 -ml-6 z-10">
-                <Card className="relative bg-gray-800 text-white rounded-2xl p-3 h-48 shadow-2xl overflow-hidden">
-                  {/* Background Image */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-blue-500/20">
-                    <img
-                      src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      alt="Veterinary practice"
-                      className="w-full h-full object-cover opacity-30"
-                    />
-                  </div>
-                  
-                  {/* Content Overlay */}
-                  <div className="relative z-10 flex flex-col justify-between h-full">
-                    <div>
-                      <h3 className="text-sm font-semibold mb-2 text-white">
-                        {caseStudies[(currentCaseStudy + 1) % caseStudies.length].title}
-                      </h3>
-                      <p className="text-xs text-gray-200 mb-2 leading-relaxed">
-                        {caseStudies[(currentCaseStudy + 1) % caseStudies.length].description}
-                        
-                      </p>
-                      {/* Transparent Button */}
-                      <Button className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-800 font-semibold px-2 py-1 rounded-lg text-xs w-fit">
-                      VIEW
-                    </Button>
-                    </div>
-                    
-                    
-                  </div>
-                </Card>
-              </div>
-            </div>
-
-            {/* Testimonial Quotes for each case study */}
-            <div className="flex items-start justify-center gap-4 mt-4">
-              {/* Previous Testimonial */}
-              <div className="w-1/4 h-10 opacity-50 transform scale-90 -mr-16 -mt-24">
-                <Card className="bg-white rounded-2xl p-4 shadow-lg">
-                  <div className="text-center relative">
-                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -left-2 -top-1">"</div>
-                    <p className="text-xs text-gray-700 italic leading-relaxed px-4">
-                      {caseStudies[(currentCaseStudy - 1 + caseStudies.length) % caseStudies.length].testimonial}
-                    </p>
-                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -right-2 -top-1">"</div>
-                  </div>
-                </Card>
-              </div>
-
-              {/* Current Testimonial */}
-              <div className="w-1/2">
-                {/* Testimonial Quote - Center of case study area */}
+            {/* Testimonial Floating Box */}
             <motion.div
-              key={`testimonial-${currentCaseStudy}`}
+              key={`testimonial-${current}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="absolute right-[317px] top-[200px] transform -translate-x-1/2 -translate-y-1/2 w-[600px] max-w-2xl z-30"
+              className="relative -mt-10 mx-auto max-w-lg"
             >
-                <Card className="bg-white rounded-3xl p-6 shadow-2xl border border-gray-100">
-                  <div className="text-center relative">
-                    <div className="text-6xl text-gray-300 font-bold leading-none absolute -left-4 -top-2">"</div>
-                    <p className="text-base text-gray-700 italic leading-relaxed px-8">
-                      {caseStudies[currentCaseStudy].testimonial}
-                    </p>
-                    <div className="text-6xl text-gray-300 font-bold leading-none absolute -right-4 -top-2">"</div>
-                  </div>
-                </Card>
+              <Card className="bg-white p-6 rounded-2xl shadow-lg">
+                <p className="text-gray-600 italic text-sm leading-relaxed">
+                  “{caseStudies[current].testimonial}”
+                </p>
+              </Card>
             </motion.div>
-              </div>
+          </motion.div>
 
-              {/* Next Testimonial quote */}
-              <div className="w-1/4 h-10 opacity-50 transform scale-90 -ml-14 -mt-24">
-                <Card className="bg-white rounded-2xl p-4 shadow-lg">
-                  <div className="text-center relative">
-                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -left-2 -top-1">"</div>
-                    <p className="text-xs text-gray-700 italic leading-relaxed px-4">
-                      {caseStudies[(currentCaseStudy + 1) % caseStudies.length].testimonial}
-                    </p>
-                    <div className="text-2xl text-gray-300 font-bold leading-none absolute -right-2 -top-1">"</div>
-                  </div>
-                </Card>
-              </div>
-            </div>
+          {/* Right Card */}
+          <div className="w-1/4 opacity-70 scale-90">
+            <Card className="overflow-hidden rounded-2xl shadow-lg">
+              <img
+                src={caseStudiesSection[nextIndex].image}
+                alt={caseStudiesSection[nextIndex].title}
+                className="w-full h-48 object-cover"
+              />
+            </Card>
           </div>
 
-          {/* Slider Navigation */}
-          <div className="flex justify-center items-center space-x-4 mt-24">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={prevCaseStudy}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
-              aria-label="Previous case study"
-            >
-              <ChevronRight className="w-5 h-5 rotate-180" />
-            </Button>
-            
-            {/* Navigation Dots */}
-            <div className="flex space-x-2">
-              {caseStudies.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToCaseStudy(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
-                    index === currentCaseStudy 
-                      ? 'bg-blue-600' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                  aria-label={`Go to case study ${index + 1}`}
-                />
-              ))}
-            </div>
+          {/* Right Navigation Arrow */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => setCurrent((prev) => (prev === caseStudiesSection.length - 1 ? 0 : prev + 1))}
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+            aria-label="Next case study"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </Button>
+        </div>
 
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={nextCaseStudy}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
-              aria-label="Next case study"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
+        {/* Dots */}
+        <div className="flex justify-center space-x-2 mt-8">
+          {caseStudiesSection.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`w-3 h-3 rounded-full transition ${
+                i === current ? "bg-blue-600" : "bg-gray-300"
+              }`}
+            />
+          ))}
         </div>
       </div>
     </section>
   );
-};
+}
+
 
 // Lead Magnet Section
 const LeadMagnetSection = () => {
@@ -1232,13 +1145,14 @@ const Footer = () => {
           {/* Company Info */}
           <div className="space-y-4">
              <div className="flex items-center space-x-2">
-               <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
+               {/* <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center">
                  <PawPrint className="w-6 h-6 text-white" />
                </div>
                <div className="flex flex-col">
                  <span className="text-xl font-bold text-blue-400">URGENT VET</span>
                  <span className="text-xl font-bold text-red-400 -mt-1">MARKETING</span>
-               </div>
+               </div> */}
+               <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="w-[250px] h-[70px]" />
              </div>
             <p className="text-slate-300 leading-relaxed">
               Your trusted partner in veterinary practice marketing. We're committed to helping veterinary practices dominate local search and grow their emergency patient base.
@@ -1326,141 +1240,168 @@ const Footer = () => {
 
 // Contact Section
 const ContactSection = () => {
+  const { values, errors, isSubmitting, handleChange, handleSubmit } = useFormValidation({
+    name: '',
+    email: '',
+    phone: '',
+    practice: '',
+    message: ''
+  });
+
+  const onSubmit = async (formData: any) => {
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log('Form submitted:', formData);
+    alert('Thank you! We will get back to you shortly.');
+  };
+
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section id="contact" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-0 min-h-[600px]"
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
-            Get in Touch
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Ready to schedule an appointment? We're here to help your pet live
-            their healthiest life.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <Card className="p-8 bg-white shadow-xl">
-              <h3 className="text-2xl font-bold text-slate-800 mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-6">
-                <motion.div
-                  className="flex items-center space-x-4 p-4 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors duration-300 cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => window.open("tel:+1234567890", "_self")}
-                >
-                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Phone</p>
-                    <p className="text-blue-600">(123) 456-7890</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-center space-x-4 p-4 rounded-lg bg-green-50 hover:bg-green-100 transition-colors duration-300 cursor-pointer"
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => window.open("mailto:info@petcareplus.com", "_self")}
-                >
-                  <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Email</p>
-                    <p className="text-green-600">info@petcareplus.com</p>
-                  </div>
-                </motion.div>
-
-                <motion.div
-                  className="flex items-center space-x-4 p-4 rounded-lg bg-red-50 hover:bg-red-100 transition-colors duration-300"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-slate-800">Address</p>
-                    <p className="text-red-600">
-                      123 Pet Care Lane, City, State 12345
-                    </p>
-                  </div>
-                </motion.div>
+          {/* Left Side - Dark Background */}
+          <div className="bg-gradient-to-br from-red-600 to-blue-600 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] opacity-20"></div>
+            
+            <div className="relative z-10 p-12 h-full flex flex-col justify-center">
+              {/* Logo */}
+              <div className="flex items-center space-x-3 mb-8">
+                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
+                  <Award className="w-6 h-6 text-white" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold text-white">URGENT VET</span>
+                  <span className="text-xl font-bold text-white -mt-1">MARKETING</span>
+                </div>
               </div>
 
-              <div className="mt-8 p-6 bg-gradient-to-r from-red-500 to-blue-500 rounded-xl text-white">
-                <h4 className="font-bold text-lg mb-2">Emergency Hours</h4>
-                <p className="text-blue-100">24/7 Emergency Care Available</p>
-                <p className="text-sm text-blue-100 mt-2">
-                  For urgent situations, call our emergency line immediately
-                </p>
-              </div>
-            </Card>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <Card className="p-8 bg-white shadow-xl">
-              <h3 className="text-2xl font-bold text-slate-800 mb-6">
-                Office Hours
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { day: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
-                  { day: "Saturday", hours: "9:00 AM - 4:00 PM" },
-                  { day: "Sunday", hours: "10:00 AM - 2:00 PM" },
-                ].map((schedule, index) => (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center p-3 rounded-lg bg-slate-50"
-                  >
-                    <span className="font-medium text-slate-800">
-                      {schedule.day}
-                    </span>
-                    <span className="text-slate-600">{schedule.hours}</span>
-                  </div>
-                ))}
-              </div>
-            </Card>
-
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="bg-gradient-to-br from-red-500 to-blue-500 rounded-2xl p-8 text-white text-center shadow-xl"
-            >
-              <h3 className="text-2xl font-bold mb-4">Ready to Book?</h3>
-              <p className="mb-6 text-blue-100">
-                Schedule your pet's appointment today and give them the care
-                they deserve.
+              {/* Headline */}
+              <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                LETS GROW{" "}
+                <span className="text-[#182b67]">TOGETHER</span>
+              </h2>
+              
+              {/* Description */}
+              <p className="text-lg text-white/90 leading-relaxed max-w-md">
+                Our team commits to delivering unparalleled veterinary marketing services. We will navigate you through all your digital marketing concerns and help you dominate local search.
               </p>
-               <Button
-                 size="lg"
-                 className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                 onClick={() => window.open("tel:+1234567890", "_self")}
-               >
-                 <Phone className="w-5 h-5 mr-2" />
-                 Call Now
-               </Button>
-            </motion.div>
-          </motion.div>
-        </div>
+            </div>
+          </div>
+
+          {/* Right Side - Form */}
+          <div className="bg-white p-12 flex flex-col justify-center">
+            <div className="max-w-md mx-auto w-full">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                Get In Touch
+              </h3>
+              <p className="text-gray-600 mb-8">
+                We've helped over 500+ veterinary practices dominate local search and grow their emergency patient base.
+              </p>
+
+              <form onSubmit={(e) => handleSubmit(e, onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <input
+                      type="text"
+                      name="name"
+                      value={values.name}
+                      onChange={handleChange}
+                      className={`w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent ${
+                        errors.name ? 'border-red-500' : ''
+                      }`}
+                      placeholder="Name"
+                    />
+                    {errors.name && (
+                      <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                    )}
+                  </div>
+                  
+                  <div>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={values.phone}
+                      onChange={handleChange}
+                      className={`w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent ${
+                        errors.phone ? 'border-red-500' : ''
+                      }`}
+                      placeholder="Phone"
+                    />
+                    {errors.phone && (
+                      <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                    )}
+                  </div>
+                </div>
+
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    className={`w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent ${
+                      errors.email ? 'border-red-500' : ''
+                    }`}
+                    placeholder="Mail"
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <select className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent text-gray-700">
+                      <option value="">Where did you hear about us</option>
+                      <option value="google">Google Search</option>
+                      <option value="referral">Referral</option>
+                      <option value="social">Social Media</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <select className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent text-gray-700">
+                      <option value="">Select Service</option>
+                      <option value="maps">Google Maps Optimization</option>
+                      <option value="seo">Local SEO</option>
+                      <option value="growth">Practice Growth</option>
+                      <option value="audit">Free Audit</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <textarea
+                    name="message"
+                    value={values.message}
+                    onChange={handleChange}
+                    className="w-full px-0 py-3 border-0 border-b-2 border-gray-300 focus:border-blue-600 focus:outline-none bg-transparent resize-none"
+                    placeholder="Message"
+                    rows={3}
+                  />
+                </div>
+                
+                <div className="flex justify-end">
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-red-600 to-blue-600 hover:from-red-700 hover:to-blue-700 text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-2"
+                  >
+                    <span>Send</span>
+                    <ChevronRight className="w-4 h-4" />
+                  </Button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -1605,7 +1546,7 @@ const useFormValidation = (initialValues: any) => {
     return newErrors;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setValues({
       ...values,
