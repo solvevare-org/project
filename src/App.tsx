@@ -1284,7 +1284,7 @@ const ContactSection = () => {
               {/* Headline */}
               <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
                 LETS GROW{" "}
-                <span className="text-[#182b67]">TOGETHER</span>
+                <span className="text-white">TOGETHER</span>
               </h2>
               
               {/* Description */}
