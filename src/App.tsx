@@ -13,7 +13,6 @@ import {
   MapPin,
   Star,
   Clock,
-  PawPrint,
   Menu,
   X,
   ChevronRight,
@@ -107,24 +106,7 @@ const VetNavigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-24">
           <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="ml-4 w-[250px] h-[70px]" />
-          {/* Logo
-           <motion.div
-             className="flex items-center space-x-2"
-             whileHover={{ scale: 1.05 }}
-             transition={{ type: "spring", stiffness: 400, damping: 17 }}
-           >
-             <div className="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center relative">
-               <div className="w-6 h-6 bg-white rounded-sm flex items-center justify-center">
-                 <div className="w-4 h-4 bg-blue-500 rounded-full flex items-center justify-center">
-                   <PawPrint className="w-3 h-3 text-white" />
-                 </div>
-               </div>
-             </div>
-             <div className="flex flex-col">
-               <span className="text-xl font-bold text-blue-600">URGENT VET</span>
-               <span className="text-xl font-bold text-red-500 -mt-1">MARKETING</span>
-             </div>
-           </motion.div> */}
+          
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -144,7 +126,7 @@ const VetNavigation = () => {
             </NavigationMenu>
              <Button
                className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-lg ml-4 flex items-center justify-center"
-               onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+               onClick={() => document.getElementById('lead-magnet')?.scrollIntoView({ behavior: 'smooth' })}
              >
                Get Free Audit
              </Button>
@@ -152,52 +134,72 @@ const VetNavigation = () => {
 
           {/* Mobile Menu */}
           <div className="md:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button 
-                  variant="ghost" 
-                  size="icon"
-                  aria-label="Open navigation menu"
-                  aria-expanded={isOpen}
-                >
-                  <Menu className="h-6 w-6" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent>
-                <SheetHeader>
-                 <SheetTitle className="flex items-center space-x-2">
-                   <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="w-10 h-10" />
-                   {/* <div className="flex flex-col"> */}
-                     {/* <span className="text-blue-600 font-bold">URGENT VET</span> */}
-                     {/* <span className="text-red-500 font-bold -mt-1">MARKETING</span> */}
-                   {/* </div> */}
-
-                 </SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col space-y-4 mt-8">
+            <Button 
+              variant="ghost" 
+              size="icon"
+              aria-label="Open navigation menu"
+              aria-expanded={isOpen}
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+            
+            {/* Mobile Menu Overlay */}
+            {isOpen && (
+              <AnimatePresence mode="wait">
+              <motion.div
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -200, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="fixed inset-0 z-50 bg-white shadow-2xl"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                  <div className="flex items-center space-x-3">
+                    <img src={URGENTVETWhiteBackground} alt="URGENT VET White Background" className="w-[250px] h-[70px]" />
+                    
+                  </div>
+                  <Button 
+                    variant="ghost" 
+                    size="icon"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <X className="h-6 w-6" />
+                  </Button>
+                </div>
+                
+                {/* Menu Items */}
+                <div className="flex flex-col space-y-4 p-6">
                   {menuItems.map((item) => (
                     <a
                       key={item.title}
                       href={item.href}
-                      className="text-lg font-medium text-slate-700 hover:text-blue-600 transition-colors block"
+                      className="text-xl font-semibold text-slate-800 hover:text-blue-600 transition-colors block py-3 border-b border-gray-100"
                       onClick={() => setIsOpen(false)}
                     >
                       {item.title}
                     </a>
                   ))}
                    <Button
-                     className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white mt-4 flex items-center justify-center"
-                     onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+                     className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white mt-6 py-4 text-lg font-semibold flex items-center justify-center"
+                     onClick={() => {
+                       setIsOpen(false);
+                       document.getElementById('lead-magnet')?.scrollIntoView({ behavior: 'smooth' });
+                     }}
                    >
+                     <Award className="w-5 h-5 mr-2" />
                      Get Free Audit
                    </Button>
                 </div>
-              </SheetContent>
-            </Sheet>
+              </motion.div>
+              </AnimatePresence>
+            )}
           </div>
         </div>
       </div>
     </motion.nav>
+    
   );
 };
 
@@ -263,7 +265,7 @@ const HeroSection = () => {
                <Button
                  size="lg"
                  className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 text-lg font-semibold flex items-center"
-                 onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+                 onClick={() => document.getElementById('lead-magnet')?.scrollIntoView({ behavior: 'smooth' })}
                >
                  <Award className="w-5 h-5 mr-3" />
                  <div className="flex flex-col items-start">
@@ -274,8 +276,8 @@ const HeroSection = () => {
                  size="lg"
                  variant="outline"
                  className="bg-white border-2 border-red-500 text-red-600 hover:bg-red-50 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-3 text-lg font-semibold flex items-center justify-center"
+                 onClick={() => document.getElementById('case-studies')?.scrollIntoView({ behavior: 'smooth' })}
                >
-                 
                    <span>View Case</span>
                    <span>Studies</span>
                  
@@ -528,14 +530,15 @@ const AboutSection = () => {
 
         {/* Expert Carousel */}
         <div className="mb-16">
-          <motion.div
-            key={currentExpert}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto"
-          >
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentExpert}
+              initial={{ x: 200, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -200, opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              className="max-w-4xl mx-auto"
+            >
             <Card className="bg-gradient-to-br from-slate-50 to-blue-50 border-0 shadow-2xl overflow-hidden">
               <div className="flex flex-col lg:flex-row items-center p-8">
                 {/* Expert Photo */}
@@ -587,6 +590,7 @@ const AboutSection = () => {
               </div>
             </Card>
           </motion.div>
+          </AnimatePresence>
 
            {/* Navigation Controls */}
            <div className="flex justify-center items-center space-x-4 mt-8">
@@ -708,25 +712,25 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section id="testimonials" className="py-8 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="text-4xl font-bold text-slate-800 mb-4">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-800 mb-4">
             What Our Vet Practice Clients Say
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl text-slate-600 max-w-3xl mx-auto">
             Don't just take our word for it - hear from the veterinary practice owners who trust us with their marketing
           </p>
         </motion.div>
 
         {/* Testimonial Slider */}
-        <div className="max-w-6xl mx-28 overflow-hidden">
+        <div className="max-w-6xl mx-4 md:mx-28 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentTestimonial}
@@ -736,18 +740,18 @@ const TestimonialsSection = () => {
               transition={{ duration: 0.6, ease: "easeInOut" }}
               className="group"
             >
-            <Card className="bg-gradient-to-r from-red-500 to-blue-500 rounded-2xl p-4 shadow-lg hover:shadow-2xl transition-all duration-300">
-              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8">
+            <Card className="bg-gradient-to-r from-red-500 to-blue-500 rounded-xl md:rounded-2xl p-4 md:p-6 shadow-lg hover:shadow-2xl transition-all duration-300">
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 md:gap-8">
                 {/* Quote and Text Content */}
-                <div className="flex-1 text-white ml-24">
-                  <div className="flex items-start gap-4">
-                    <div className="text-6xl text-blue-200 font-bold leading-none">"</div>
+                <div className="flex-1 text-white ml-0 md:ml-24">
+                  <div className="flex items-start gap-2 md:gap-4">
+                    <div className="text-3xl md:text-6xl text-blue-200 font-bold leading-none">"</div>
                     <div className="flex-1">
-                      <p className="text-lg lg:text-xl leading-relaxed mb-6 w-96">
+                      <p className="text-sm md:text-lg lg:text-xl leading-relaxed mb-4 md:mb-6 w-full md:w-96">
                         {testimonials[currentTestimonial].comment}
                       </p>
                       <div className="space-y-2">
-                        <p className="text-lg font-semibold w-96">{testimonials[currentTestimonial].name + " | " + testimonials[currentTestimonial].petName}</p>
+                        <p className="text-sm md:text-lg font-semibold w-full md:w-96">{testimonials[currentTestimonial].name + " | " + testimonials[currentTestimonial].petName}</p>
                       
                       </div>
                     </div>
@@ -757,7 +761,7 @@ const TestimonialsSection = () => {
                 {/* Circular Portrait */}
                 <div className="flex-shrink-0 gap-4">
                   <div className="relative">
-                    <div className="w-52 h-52 mr-24 border-4 border-white rounded-full">
+                    <div className="w-32 h-32 md:w-52 md:h-52 mr-0 md:mr-24 border-4 border-white rounded-full">
                       <img
                         src={testimonials[currentTestimonial].image}
                         alt={testimonials[currentTestimonial].name}
@@ -773,24 +777,24 @@ const TestimonialsSection = () => {
           </AnimatePresence>
 
           {/* Navigation Controls */}
-          <div className="flex justify-center items-center space-x-4 mt-8">
+          <div className="flex justify-center items-center space-x-2 md:space-x-4 mt-6 md:mt-8">
             <Button
               variant="outline"
               size="icon"
               onClick={prevTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
+              className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
               aria-label="Previous testimonial"
             >
-              <ChevronRight className="w-5 h-5 rotate-180" />
+              <ChevronRight className="w-3 h-3 md:w-5 md:h-5 rotate-180" />
             </Button>
             
             {/* Dots Indicator */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-1 md:space-x-2">
               {testimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-colors duration-200 ${
                     index === currentTestimonial 
                       ? 'bg-blue-600' 
                       : 'bg-slate-300 hover:bg-slate-400'
@@ -804,10 +808,10 @@ const TestimonialsSection = () => {
               variant="outline"
               size="icon"
               onClick={nextTestimonial}
-              className="w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
+              className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
               aria-label="Next testimonial"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-3 h-3 md:w-5 md:h-5" />
             </Button>
           </div>
         </div>
@@ -885,107 +889,181 @@ const CaseStudiesSection = () => {
   const nextIndex = (current + 1) % caseStudies.length;
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-12">
+    <section id="case-studies" className="py-8 md:py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center px-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 md:mb-12">
           Case Studies
         </h2>
 
         {/* Carousel */}
-        <div className="relative flex items-center justify-center space-x-6">
-          {/* Left Navigation Arrow */}
+        <div className="relative flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+          {/* Mobile: Show only center card */}
+          <div className="md:hidden w-full max-w-sm">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -200, opacity: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+              <Card className="relative overflow-hidden rounded-2xl shadow-xl bg-gray-900 text-white h-64">
+                <img
+                   src={caseStudiesSection[current].image}
+                   alt={caseStudiesSection[current].title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+                <div className="relative z-10 flex flex-col justify-end p-6 h-full text-left">
+                  <h3 className="text-lg font-semibold mb-2">
+                    {caseStudiesSection[current].title}
+                  </h3>
+                  <p className="text-xs mb-4">{caseStudiesSection[current].description}</p>
+                  <Button className="w-fit bg-white text-gray-900 font-semibold px-4 py-2 rounded-full text-sm">
+                    View
+                  </Button>
+                </div>
+              </Card>
+
+              {/* Testimonial Floating Box */}
+              <motion.div
+                key={`testimonial-${current}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative -mt-6 mx-auto max-w-sm"
+              >
+                <Card className="bg-white p-4 rounded-xl shadow-lg">
+                  <p className="text-gray-600 italic text-xs leading-relaxed">
+                    "{caseStudies[current].testimonial}"
+                  </p>
+                </Card>
+              </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Desktop: Show carousel with side cards */}
+          <div className="hidden md:flex items-center justify-center space-x-6 w-full">
+            {/* Left Navigation Arrow */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setCurrent((prev) => (prev === 0 ? caseStudiesSection.length - 1 : prev - 1))}
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+              aria-label="Previous case study"
+            >
+              <ChevronRight className="w-5 h-5 rotate-180" />
+            </Button>
+
+            {/* Left Card */}
+            <div className="w-1/4 opacity-40 scale-90">
+              <Card className="overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src={caseStudiesSection[prevIndex].image}
+                  alt={caseStudiesSection[prevIndex].title}
+                  className="w-full h-48 object-cover"
+                />
+              </Card>
+            </div>
+
+            {/* Center Card */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial={{ x: 200, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: -200, opacity: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="w-1/2"
+              >
+              <Card className="relative overflow-hidden rounded-3xl shadow-xl bg-gray-900 text-white h-80">
+                <img
+                   src={caseStudiesSection[current].image}
+                   alt={caseStudiesSection[current].title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60"
+                />
+                <div className="relative z-10 flex flex-col justify-end p-32 pl-14 h-full text-left">
+                  <h3 className="text-xl font-semibold mb-2">
+                    {caseStudiesSection[current].title}
+                  </h3>
+                  <p className="text-sm mb-4">{caseStudiesSection[current].description}</p>
+                  <Button className="w-fit bg-white text-gray-900 font-semibold px-5 py-2 rounded-full">
+                    View
+                  </Button>
+                </div>
+              </Card>
+
+              {/* Testimonial Floating Box */}
+              <motion.div
+                key={`testimonial-${current}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative -mt-10 mx-auto max-w-lg"
+              >
+                <Card className="bg-white p-6 rounded-2xl shadow-lg">
+                  <p className="text-gray-600 italic text-sm leading-relaxed">
+                    "{caseStudies[current].testimonial}"
+                  </p>
+                </Card>
+              </motion.div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Right Card */}
+            <div className="w-1/4 opacity-70 scale-90">
+              <Card className="overflow-hidden rounded-2xl shadow-lg">
+                <img
+                  src={caseStudiesSection[nextIndex].image}
+                  alt={caseStudiesSection[nextIndex].title}
+                  className="w-full h-48 object-cover"
+                />
+              </Card>
+            </div>
+
+            {/* Right Navigation Arrow */}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setCurrent((prev) => (prev === caseStudiesSection.length - 1 ? 0 : prev + 1))}
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+              aria-label="Next case study"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
+        </div>
+
+        {/* Navigation Controls for Mobile */}
+        <div className="md:hidden flex justify-center items-center space-x-4 mt-6">
           <Button
             variant="outline"
             size="icon"
             onClick={() => setCurrent((prev) => (prev === 0 ? caseStudiesSection.length - 1 : prev - 1))}
-            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+            className="w-8 h-8 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
             aria-label="Previous case study"
           >
-            <ChevronRight className="w-5 h-5 rotate-180" />
+            <ChevronRight className="w-3 h-3 rotate-180" />
           </Button>
-
-          {/* Left Card */}
-          <div className="w-1/4 opacity-40 scale-90">
-            <Card className="overflow-hidden rounded-2xl shadow-lg">
-              <img
-                src={caseStudiesSection[prevIndex].image}
-                alt={caseStudiesSection[prevIndex].title}
-                className="w-full h-48 object-cover"
-              />
-            </Card>
-          </div>
-
-          {/* Center Card */}
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="w-1/2"
-          >
-            <Card className="relative overflow-hidden rounded-3xl shadow-xl bg-gray-900 text-white h-80">
-              <img
-                 src={caseStudiesSection[current].image}
-                 alt={caseStudiesSection[current].title}
-                className="absolute inset-0 w-full h-full object-cover opacity-60"
-              />
-              <div className="relative z-10 flex flex-col justify-end p-32 pl-14 h-full text-left">
-                <h3 className="text-xl font-semibold mb-2">
-                  {caseStudiesSection[current].title}
-                </h3>
-                <p className="text-sm mb-4">{caseStudiesSection[current].description}</p>
-                <Button className="w-fit bg-white text-gray-900 font-semibold px-5 py-2 rounded-full">
-                  View
-                </Button>
-              </div>
-            </Card>
-
-            {/* Testimonial Floating Box */}
-            <motion.div
-              key={`testimonial-${current}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative -mt-10 mx-auto max-w-lg"
-            >
-              <Card className="bg-white p-6 rounded-2xl shadow-lg">
-                <p className="text-gray-600 italic text-sm leading-relaxed">
-                  “{caseStudies[current].testimonial}”
-                </p>
-              </Card>
-            </motion.div>
-          </motion.div>
-
-          {/* Right Card */}
-          <div className="w-1/4 opacity-70 scale-90">
-            <Card className="overflow-hidden rounded-2xl shadow-lg">
-              <img
-                src={caseStudiesSection[nextIndex].image}
-                alt={caseStudiesSection[nextIndex].title}
-                className="w-full h-48 object-cover"
-              />
-            </Card>
-          </div>
-
-          {/* Right Navigation Arrow */}
+          
           <Button
             variant="outline"
             size="icon"
             onClick={() => setCurrent((prev) => (prev === caseStudiesSection.length - 1 ? 0 : prev + 1))}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-lg flex items-center justify-center z-10"
+            className="w-8 h-8 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 bg-white shadow-sm flex items-center justify-center"
             aria-label="Next case study"
           >
-            <ChevronRight className="w-5 h-5" />
+            <ChevronRight className="w-3 h-3" />
           </Button>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center space-x-2 mt-8">
+        <div className="flex justify-center space-x-2 mt-6 md:mt-8">
           {caseStudiesSection.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`w-3 h-3 rounded-full transition ${
+              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition ${
                 i === current ? "bg-blue-600" : "bg-gray-300"
               }`}
             />
@@ -1014,7 +1092,7 @@ const LeadMagnetSection = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-red-500 to-blue-500">
+    <section id="lead-magnet" className="py-20 bg-gradient-to-br from-red-500 to-blue-500">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -1177,7 +1255,7 @@ const Footer = () => {
               <li><a href="#home" className="text-slate-300 hover:text-white transition-colors">Home</a></li>
               <li><a href="#services" className="text-slate-300 hover:text-white transition-colors">Services</a></li>
               <li><a href="#testimonials" className="text-slate-300 hover:text-white transition-colors">Testimonials</a></li>
-              <li><a href="#case-studies" className="text-slate-300 hover:text-white transition-colors">Case Studies</a></li>
+               <li><a href="#case-studies" className="text-slate-300 hover:text-white transition-colors">Case Studies</a></li>
               <li><a href="#about" className="text-slate-300 hover:text-white transition-colors">About Us</a></li>
               <li><a href="#contact" className="text-slate-300 hover:text-white transition-colors">Contact</a></li>
               <li><a href="tel:+1234567890" className="text-slate-300 hover:text-white transition-colors">Emergency Care</a></li>
@@ -1422,9 +1500,20 @@ const PopupLeadMagnet = () => {
         setIsVisible(true);
         setHasShown(true);
       }
-    }, 5000); // Show after 5 seconds
+    }, 3000); // Show after 5 seconds
 
-    return () => clearTimeout(timer);
+    // Listen for custom event to trigger popup
+    const handleTriggerPopup = () => {
+      setIsVisible(true);
+      setHasShown(true);
+    };
+
+    window.addEventListener('triggerPopup', handleTriggerPopup);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('triggerPopup', handleTriggerPopup);
+    };
   }, [hasShown]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -1620,8 +1709,12 @@ const StickyCTAButtons = () => {
       {/* Desktop CTA */}
        <Button
          size="lg"
-         className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 hidden md:flex items-center justify-center"
-         onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+         className="CTA mx-auto bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 hidden md:flex items-center justify-center"
+         onClick={() => {
+           // Trigger the popup by setting the state
+           const event = new CustomEvent('triggerPopup');
+           window.dispatchEvent(event);
+         }}
        >
          <Award className="w-5 h-5 mr-2" />
          Get Free Audit
@@ -1631,7 +1724,11 @@ const StickyCTAButtons = () => {
       <Button
         size="lg"
         className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 md:hidden rounded-full w-16 h-16"
-        onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+        onClick={() => {
+          // Trigger the popup by setting the state
+          const event = new CustomEvent('triggerPopup');
+          window.dispatchEvent(event);
+        }}
       >
         <Award className="w-6 h-6" />
       </Button>
@@ -1707,7 +1804,10 @@ const FloatingChatWidget = () => {
                    variant="outline"
                    size="sm"
                    className="w-full justify-start text-left"
-                   onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
+                   onClick={() => {
+                     setIsOpen(false);
+                     document.getElementById('lead-magnet')?.scrollIntoView({ behavior: 'smooth' });
+                   }}
                  >
                    <Award className="w-4 h-4 mr-2" />
                    Get Free Google Maps Audit
@@ -1716,6 +1816,7 @@ const FloatingChatWidget = () => {
                    variant="outline"
                    size="sm"
                    className="w-full justify-start text-left"
+                   onClick={() => window.open("mailto:info@urgentvetmarketing.com", "_self")}
                  >
                    <Mail className="w-4 h-4 mr-2" />
                    Ask About Our Services
@@ -1724,6 +1825,10 @@ const FloatingChatWidget = () => {
                    variant="outline"
                    size="sm"
                    className="w-full justify-start text-left"
+                   onClick={() => {
+                     setIsOpen(false);
+                     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                   }}
                  >
                    <Clock className="w-4 h-4 mr-2" />
                    Emergency Marketing Support
