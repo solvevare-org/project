@@ -264,7 +264,16 @@ const HeroSection = () => {
             >
                <Button
                  size="lg"
-                 className="bg-gradient-to-r from-red-500 to-blue-500 hover:from-red-600 hover:to-blue-600 text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 text-lg font-semibold flex items-center"
+                 className="text-white shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 rounded-xl px-8 py-4 text-lg font-semibold flex items-center"
+                 style={{
+                   background: 'linear-gradient(to right, #ef4444, #3b82f6)',
+                 }}
+                 onMouseEnter={(e) => {
+                   e.currentTarget.style.background = 'linear-gradient(to right, #dc2626, #2563eb)';
+                 }}
+                 onMouseLeave={(e) => {
+                   e.currentTarget.style.background = 'linear-gradient(to right, #ef4444, #3b82f6)';
+                 }}
                  onClick={() => document.getElementById('lead-magnet')?.scrollIntoView({ behavior: 'smooth' })}
                >
                  <Award className="w-5 h-5 mr-3" />
